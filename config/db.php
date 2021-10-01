@@ -1,5 +1,5 @@
 <?php
-$host  = "localhost";
+$host  = "mysql5031.site4now.net";
 $username = "a7a857_helokit";
 $password = "Truongtai1";
 $database = "db_a7a857_helokit";
