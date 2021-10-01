@@ -1,61 +1,148 @@
-<html>
+<?php
+include('include/header.php');
+include('include/footer.php');
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SIDA STORE</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <link href="css/datepicker3.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
-
-    <!--Icons-->
-    <script src="js/lumino.glyphs.js"></script>
-
-    <!--Icons-->
-    <script src=""></script>
-    <style>
-        .cke {
-            visibility: hidden;
-        }
-    </style>
-</head>
-
-<body>
+?>
 
 
+<!--/.sidebar-->
 
+<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="#"><svg class="glyph stroked home">
+                        <use xlink:href="#stroked-home"></use>
+                    </svg></a></li>
+            <li class="active">Icons</li>
+        </ol>
+    </div>
+    <!--/.row-->
 
     <div class="row">
-        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
-            <div class="login-panel panel panel-default">
-                <div class="panel-heading">Đăng nhập</div>
-                <div class="panel-body">
-                    <form role="form" method="post">
-                        <fieldset>
-                            <div class="form-group">
-                                <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus="">
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" placeholder="Mật khẩu" name="password" type="password" value="">
-                            </div>
-                            <h2></h2>
-                            <div class="checkbox">
-                                <label>
-                                    <input name="remember" type="checkbox" value="Remember Me">Nhớ tên đăng nhập
-                                </label>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Đăng nhập</button>
-                        </fieldset>
-                    </form>
+        <div class="col-lg-12">
+            <h1 class="page-header">Dashboard</h1>
+        </div>
+    </div>
+    <!--/.row-->
+
+    <div class="row">
+        <div class="col-xs-12 col-md-6 col-lg-3">
+            <div class="panel panel-blue panel-widget ">
+                <div class="row no-padding">
+                    <div class="col-sm-3 col-lg-5 widget-left">
+                        <svg class="glyph stroked bag">
+                            <use xlink:href="#stroked-bag"></use>
+                        </svg>
+                    </div>
+                    <div class="col-sm-9 col-lg-7 widget-right">
+                        <div class="large">120</div>
+                        <div class="text-muted">Đơn hàng mới</div>
+                    </div>
                 </div>
             </div>
-        </div><!-- /.col-->
-    </div><!-- /.row -->
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-3">
+            <div class="panel panel-orange panel-widget">
+                <div class="row no-padding">
+                    <div class="col-sm-3 col-lg-5 widget-left">
+                        <svg class="glyph stroked empty-message">
+                            <use xlink:href="#stroked-empty-message"></use>
+                        </svg>
+                    </div>
+                    <div class="col-sm-9 col-lg-7 widget-right">
+                        <div class="large">52</div>
+                        <div class="text-muted">Comments</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-3">
+            <div class="panel panel-teal panel-widget">
+                <div class="row no-padding">
+                    <div class="col-sm-3 col-lg-5 widget-left">
+                        <svg class="glyph stroked male-user">
+                            <use xlink:href="#stroked-male-user"></use>
+                        </svg>
+                    </div>
+                    <div class="col-sm-9 col-lg-7 widget-right">
+                        <div class="large">24</div>
+                        <div class="text-muted">Khách hàng mới</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-3">
+            <div class="panel panel-red panel-widget">
+                <div class="row no-padding">
+                    <div class="col-sm-3 col-lg-5 widget-left">
+                        <svg class="glyph stroked app-window-with-content">
+                            <use xlink:href="#stroked-app-window-with-content"></use>
+                        </svg>
+                    </div>
+                    <div class="col-sm-9 col-lg-7 widget-right">
+                        <div class="large">25.2k</div>
+                        <div class="text-muted">Page Views</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/.row-->
 
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Site Traffic Overview</div>
+                <div class="panel-body">
+                    <div class="canvas-wrapper">
+                        <canvas class="main-chart" id="line-chart" height="200" width="600"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/.row-->
 
-
-</body>
-
-</html>
+    <div class="row">
+        <div class="col-xs-6 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body easypiechart-panel">
+                    <h4>New Orders</h4>
+                    <div class="easypiechart" id="easypiechart-blue" data-percent="92"><span class="percent">92%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body easypiechart-panel">
+                    <h4>Comments</h4>
+                    <div class="easypiechart" id="easypiechart-orange" data-percent="65"><span class="percent">65%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body easypiechart-panel">
+                    <h4>New Users</h4>
+                    <div class="easypiechart" id="easypiechart-teal" data-percent="56"><span class="percent">56%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body easypiechart-panel">
+                    <h4>Visitors</h4>
+                    <div class="easypiechart" id="easypiechart-red" data-percent="27"><span class="percent">27%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/.row-->
+</div>
+<!--/.col-->
+</div>
+<!--/.row-->
