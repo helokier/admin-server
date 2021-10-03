@@ -1,5 +1,7 @@
 <?php
 include('include/header.php');
+session_start();
+
 include('config/db.php');
 include('include/footer.php');
 

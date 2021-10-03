@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 include('include/header.php');
 include('config/db.php');
 include('include/footer.php');
@@ -30,11 +31,11 @@ include('include/footer.php');
                     <?php
                     if (isset($_GET['product_id'])) {
                         $product_id = $_GET['product_id'];
-                        $querys = " SELECT * FROM product WHERE id = '$product_id' LIMIT 1";
+                        $querys = " SELECT * FROM product INNER JOIN catelogy ON catelogy.id_catalog = product.catalog_id WHERE id = '$product_id' LIMIT 1";
                         $query_run = mysqli_query($con, $querys);
                         if (mysqli_num_rows($query_run) > 0) {
                             // $productitem = mysqli_fetch_array($query_run);
-                            foreach ($query_run as $row) {
+                            while ($row = mysqli_fetch_array($query_run)) {
                     ?>
                                 <form class="form-horizontal" name="" novalidate enctype="multipart/form-data" method="POST" action="code.php">
                                     <input type="hidden" name="product_id" value="<?= $row['id'] ?>">
@@ -65,46 +66,15 @@ include('include/footer.php');
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-2 control-label">Danh mục</label>
                                         <div class="col-sm-5">
-                                            <select class="form-control" name="catalog_id" value="<?= $row['catalog_id'] ?>">
-                                                <option>--- Chọn danh mục sản phẩm ---</option>
+                                            <select class="form-control" name="catalog_id">
+                                                
                                                 <?php
                                                 $query = "SELECT * FROM catelogy";
                                                 $query_run = mysqli_query($con, $query);
                                                 if (mysqli_num_rows($query_run)) {
                                                     foreach ($query_run as $item) {
                                                 ?>
-                                                        <optgroup label=" <?php if ($item['parent_id'] == 1) {
-                                                                                echo "Thời trang";
-                                                                            } else {
-                                                                                if ($item['parent_id'] == 2) {
-                                                                                    echo "Quần áo gia đình";
-                                                                                } else {
-                                                                                    if ($item['parent_id'] == 3) {
-                                                                                        echo "Thời trang nữ";
-                                                                                    } else {
-                                                                                        if ($item['parent_id'] == 4) {
-                                                                                            echo "Thời trang nam";
-                                                                                        } else {
-                                                                                            if ($item['parent_id'] == 5) {
-                                                                                                echo "Khuyến mại";
-                                                                                            } else {
-                                                                                                if ($item['parent_id'] == 6) {
-                                                                                                    echo "Bán chạy";
-                                                                                                } else {
-                                                                                                    if ($item['parent_id'] == 7) {
-                                                                                                        echo "Mới";
-                                                                                                    } else {
-                                                                                                    }
-                                                                                                }
-                                                                                            }
-                                                                                        }
-                                                                                    }
-                                                                                }
-                                                                            } ?>">
-
-                                                            <option value="<?php echo $item['parent_id'] ?>"><?php echo $item['name']; ?></option>
-                                                        </optgroup>
-
+                                                        <option value="<?php echo $item['id_catalog'] ?>" <?php if($item['id_catalog'] == $row['catalog_id']){ echo "selected"; }else{} ?> > <?php echo $item['name_dm']; ?> </option>
                                                 <?php
                                                     }
                                                 }
@@ -116,6 +86,7 @@ include('include/footer.php');
                                             </div>
                                         </div>
                                     </div>
+                                    
                                     <div class="form-group">
                                         <label for="inputEmail3" class="col-sm-2 control-label">Giá tiền</label>
                                         <div class="col-sm-5">

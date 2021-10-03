@@ -1,6 +1,7 @@
 <?php
 session_start();
 include('config/db.php');
+// include('include/sercurety.php');
 
 // ADD USER_ADMIN
 if(isset($_POST['submitbtn']))
@@ -70,7 +71,7 @@ if (isset($_POST['btn_dm'])) {
   $description = $_POST['description'];
   $parent_id = $_POST['parent_id'];
   $sort_order = $_POST['sort_order'];
-  $catelogy_query = "INSERT INTO catelogy (name,description,parent_id,sort_order) VALUES ('$namedm','$description','$parent_id','$sort_order')";
+  $catelogy_query = "INSERT INTO catelogy (name,sort_order) VALUES ('$namedm','$sort_order')";
   $catelogy_query_run = mysqli_query($con, $catelogy_query);
 
   if ($catelogy_query_run) {
@@ -87,10 +88,8 @@ if (isset($_POST['btn_editdm'])) {
 
   $catelogy_id = $_POST['catelogy_id'];
   $namedm = $_POST['namedm'];
-  $description = $_POST['description'];
-  $parent_id = $_POST['parent_id'];
   $sort_order = $_POST['sort_order'];
-  $query = "UPDATE catelogy SET name ='$namedm',description='$description', parent_id ='$parent_id', sort_order = '$sort_order' WHERE id = '$catelogy_id'";
+  $query = "UPDATE catelogy SET name_dm ='$namedm', sort_order = '$sort_order' WHERE id_catalog = '$catelogy_id'";
   $query_run = mysqli_query($con, $query);
 
   if ($query_run) {
@@ -106,7 +105,7 @@ if (isset($_POST['btn_editdm'])) {
 if (isset($_POST['DeleteDMbtn'])) {
 
   $deletedm_id = $_POST['deletedm_id'];
-  $query = "DELETE FROM catelogy WHERE id = '$deletedm_id'";
+  $query = "DELETE FROM catelogy WHERE id_catalog = '$deletedm_id'";
   $querycate_run = mysqli_query($con, $query);
 
   if ($querycate_run) {
@@ -217,6 +216,32 @@ if (isset($_POST['addproduct'])) {
   }
 
 
+
+
+
+  if(isset($_POST['btn_login'])){
+    $username = $_POST['email'];
+    $password = $_POST['password'];
+    $query_login = "SELECT * FROM admin  WHERE email = '$username' and  passworld	 = '$password' ";
+    $query_login_run = mysqli_query($con, $query_login);
+  if (mysqli_num_rows($query_login_run)>0) {
+    echo "<script>window.location.href='dasborad.php'</script>";
+    $_SESSION['status'] = "Đăng Nhập Thành Công";
+    $_SESSION['status_code'] = "success";
+    header("Location: login.php");
+  } else {
+    $_SESSION['status'] = " Đăng Nhập Thất Bại";
+    $_SESSION['status_code'] = "error";
+    header("Location: login.php");
+  }
+    
+  }
+
+if (isset($_POST['btn_logout'])) {
+  unset($_SESSION['email']);
+  session_destroy();
+  header("Location: login.php");
+}
  
 
  

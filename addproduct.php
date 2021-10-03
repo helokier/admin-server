@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 include('include/header.php');
 include('config/db.php');
 include('include/footer.php');
@@ -61,38 +62,7 @@ include('include/footer.php');
                                     if (mysqli_num_rows($query_run)) {
                                         foreach ($query_run as $item) {
                                     ?>
-                                            <optgroup label=" <?php if ($item['parent_id'] == 1) {
-                                                                    echo "Thời trang";
-                                                                } else {
-                                                                    if ($item['parent_id'] == 2) {
-                                                                        echo "Quần áo gia đình";
-                                                                    } else {
-                                                                        if ($item['parent_id'] == 3) {
-                                                                            echo "Thời trang nữ";
-                                                                        } else {
-                                                                            if ($item['parent_id'] == 4) {
-                                                                                echo "Thời trang nam";
-                                                                            } else {
-                                                                                if ($item['parent_id'] == 5) {
-                                                                                    echo "Khuyến mại";
-                                                                                } else {
-                                                                                    if ($item['parent_id'] == 6) {
-                                                                                        echo "Bán chạy";
-                                                                                    } else {
-                                                                                        if ($item['parent_id'] == 7) {
-                                                                                            echo "Mới";
-                                                                                        } else {
-                                                                                        }
-                                                                                    }
-                                                                                }
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                } ?>">
-
-                                                <option value="<?php echo $item['parent_id'] ?>"><?php echo $item['name']; ?></option>
-                                            </optgroup>
-
+                                    <option value="<?php echo $item['id_catalog'] ?>"><?php echo $item['name_dm']; ?></option>
                                     <?php
                                         }
                                     }

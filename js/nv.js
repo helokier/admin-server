@@ -17,3 +17,11 @@
         $("#DeleteDM").modal("show");
       });
     });
+
+ $(document).ready(function () {
+   $(".logout").click(function (e) {
+     var users_id = $(this).val();
+     console.log(users_id);
+     $("#logoutModal").modal("show");
+   });
+ });

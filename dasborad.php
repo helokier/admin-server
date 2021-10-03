@@ -1,7 +1,9 @@
 <?php
-include('include/header.php');
-include('include/footer.php');
 
+
+include('include/header.php');
+include('config/db.php');
+ 
 ?>
 
 
@@ -146,3 +148,7 @@ include('include/footer.php');
 <!--/.col-->
 </div>
 <!--/.row-->
+<?php
+include('include/footer.php');
+
+?>

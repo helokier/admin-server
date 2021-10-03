@@ -20,7 +20,7 @@
                          <li><a href="#"><svg class="glyph stroked gear">
                                      <use xlink:href="#stroked-gear"></use>
                                  </svg> Settings</a></li>
-                         <li><a href="login.php"><svg class="glyph stroked cancel">
+                         <li><a href="logout.php"><svg class="glyph stroked cancel">
                                      <use xlink:href="#stroked-cancel"></use>
                                  </svg> Logout</a></li>
                      </ul>
@@ -47,9 +47,15 @@
          <li><a href="product.php"><svg class="glyph stroked bag">
                      <use xlink:href="#stroked-bag"></use>
                  </svg> Sản Phẩm</a></li>
+         <li><a href="kdproduct.php"><svg class="glyph stroked bag">
+                     <use xlink:href="#stroked-bag"></use>
+                 </svg> Kiểm Duyệt Sản Phẩm</a></li>
          <li><a href="oder.php"><svg class="glyph stroked pencil">
                      <use xlink:href="#stroked-table"></use>
                  </svg> Đơn Đặt Hàng</a></li>
+         <li><a href="kdorder.php"><svg class="glyph stroked pencil">
+                     <use xlink:href="#stroked-table"></use>
+                 </svg> Kiểm Duyệt Đơn Đặt Hàng</a></li>
 
          <li role="presentation" class="divider"></li>
          <li><a href="nv.php"><svg class="glyph stroked male-user">

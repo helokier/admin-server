@@ -1,9 +1,10 @@
 <?php
 session_start();
+
 include('include/header.php');
 include('config/db.php');
 // require(__DIR__ . '/db.php');
-include('include/footer.php');
+
 
 
 
@@ -34,20 +35,15 @@ include('include/footer.php');
                                 </svg> Thêm sản phẩm</a></div>
                     </div>
                     <div class="panel-body">
-                        <form role="search " class="form-search">
-                            <div class="form-group col-md-6">
-                                <input type="text" class="form-control" placeholder="Search">
-                            </div>
-                        </form>
                         <div class="table-responsive">
-                            <table class="table table-hover">
+                            <table class="table table-hover" id="myDataTable">
                                 <thead>
                                     <tr class="info">
                                         <th></th>
-                                        <th class="text-center">ID</th>
-                                        <th>Tên sản phẩm</th>
-                                        <th>Danh mục</th>
-                                        <th>Giá</th>
+                                        <th class="text-center">ID &nbsp;&nbsp;&nbsp;<a class="fa fa-sort"></a></th>
+                                        <th>Tên sản phẩm &nbsp;&nbsp;&nbsp;<a class="fa fa-sort"></a></th>
+                                        <th>Danh &nbsp;&nbsp;&nbsp;<a class="fa fa-sort"></a></th>
+                                        <th>Giá &nbsp;&nbsp;&nbsp;<a class="fa fa-sort"></a></th>
                                         <th>Hành động</th>
                                     </tr>
                                 </thead>
@@ -55,20 +51,25 @@ include('include/footer.php');
 
 
                                     <?php
+
                                     $items = 5;
                                     $query = "SELECT * FROM product";
                                     $query_run = mysqli_query($con, $query);
                                     $count = mysqli_num_rows($query_run);
 
-
                                     $pages = ceil($count / $items);
                                     $page = isset($_GET['page']) && $_GET['page'] >= 1 && $_GET['page'] <=  $items ? $_GET['page'] : 1;
                                     $start = ($page * $items) - $items;
+                                    // require
+                                    $sql_lietke_sp = "SELECT * FROM product INNER JOIN catelogy ON catelogy.id_catalog = product.catalog_id WHERE id_kiemduyet=1";
+                                    $query_lietke_sp = mysqli_query($con, $sql_lietke_sp) or die(mysqli_error($con));
+
 
                                     $sql = "SELECT * FROM product  LIMIT   $start, $items";
                                     $query_sql = mysqli_query($con, $sql) or die(mysqli_error($con));
 
-                                    while ($row = mysqli_fetch_array($query_sql)) {
+                                    while ($row = mysqli_fetch_array($query_lietke_sp)) {
+
                                         // if ($count > 0) {
 
                                         //     foreach ($query_sql as $row) {
@@ -85,34 +86,8 @@ include('include/footer.php');
                                                 <strong><?php echo $row['name']; ?></strong>
                                                 <p style="font-size: 12px;margin-top: 4px;">View: 23 <span> | Đã bán :1</span></p>
                                             </td>
-                                            <td style="vertical-align: middle"> <?php if ($row['catalog_id'] == 1) {
-                                                                                    echo "Thời trang";
-                                                                                } else {
-                                                                                    if ($row['catalog_id'] == 2) {
-                                                                                        echo "Quần áo gia đình";
-                                                                                    } else {
-                                                                                        if ($row['catalog_id'] == 3) {
-                                                                                            echo "Thời trang nữ";
-                                                                                        } else {
-                                                                                            if ($row['catalog_id'] == 4) {
-                                                                                                echo "Thời trang nam";
-                                                                                            } else {
-                                                                                                if ($row['catalog_id'] == 5) {
-                                                                                                    echo "Khuyến mại";
-                                                                                                } else {
-                                                                                                    if ($row['catalog_id'] == 6) {
-                                                                                                        echo "Bán chạy";
-                                                                                                    } else {
-                                                                                                        if ($row['catalog_id'] == 7) {
-                                                                                                            echo "Mới";
-                                                                                                        } else {
-                                                                                                        }
-                                                                                                    }
-                                                                                                }
-                                                                                            }
-                                                                                        }
-                                                                                    }
-                                                                                } ?></strong></td>
+
+                                            <td style="vertical-align: middle"> <strong><?php echo $row['name_dm'] ?> </strong></td>
                                             <td style="vertical-align: middle">
                                                 <strong><?php echo $row['discount']; ?> VNĐ</strong><br><del><?php echo $row['price']; ?> VNĐ</del>
 
@@ -138,40 +113,7 @@ include('include/footer.php');
                             </table>
                             <button class="btn btn-info" id="submit-del" style="float: left" onclick="return confirm('Bạn chắc chắn muốn xóa')">Xóa</button>
 
-                            <nav aria-label="Page navigation" class="text-right">
-                                <ul class="pagination">
-                                    <li><span aria-hidden="true"><a href="?page=<?= $page - 1; ?>" <?php if ($page == 1) {
-                                                                                                        echo "class= 'disabled' ";
-                                                                                                    } ?> data-ci-pagination-page="2" rel="next" class="fa fa-backward"></a></span></li>
 
-                                    <?php
-                                    for ($i = 1; $i <= $pages; $i++) {
-                                        if ($page == $i) {
-                                    ?>
-                                            <li class="active"><a href="?page=<?= $i; ?>"><?php echo $i; ?></a></li>
-                                        <?php
-                                        } else {
-                                        ?>
-                                            <li class=""><a href="?page=<?= $i; ?>"><?php echo $i; ?></a></li>
-                                        <?php
-                                        }
-                                        ?>
-
-                                    <?php
-                                    }
-
-                                    ?>
-
-                                    <!-- <li><a href="#" data-ci-pagination-page="2">2</a></li>
-                                    <li><a href="#" data-ci-pagination-page="3">3</a></li> -->
-                                    <li><span aria-hidden="true"><a href="?page=<?= $page + 1; ?>" <?php if ($page == $pages) {
-                                                                                                        echo "class= 'disabled' ";
-                                                                                                    } ?> data-ci-pagination-page="2" rel="next" class="fa fa-forward"></a></span></li>
-                                    <!-- <li  <?php if ($page == 1) {
-                                                    echo "class= 'disabled' ";
-                                                } ?> ><span aria-hidden="true"><a href="?page=<?= $page + 1; ?> " data-ci-pagination-page="2" rel="next" class="fa fa-forward"></a></span></li> -->
-                                </ul>
-                            </nav>
 
                         </div>
                     </div>
@@ -211,5 +153,13 @@ include('include/footer.php');
             console.log(users_id);
             $("#DeleteMota").modal("show");
         });
+
+
     });
+
+    $(document).ready(function() {
+        $('#myDataTable').DataTable();
+    })
 </script>
+
+<?php include('include/footer.php'); ?>

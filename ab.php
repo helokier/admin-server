@@ -1,8 +1,8 @@
 <?php
 session_start();
+
 include('include/header.php');
 include('config/db.php');
-include('include/footer.php');
 
 
 
@@ -32,17 +32,16 @@ include('include/footer.php');
                 </div>
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table class="table table-hover" id="myDataTable2">
                             <thead>
                                 <tr class="info">
-                                    <th>ID</th>
-                                    <th>Tên danh mục</th>
-                                    <th>Parent ID</th>
-                                    <th>Thứ tự</th>
-                                    <th>Hành động</th>
+                                    <th>ID &nbsp;&nbsp;&nbsp;<a class="fa fa-sort"></a></th>
+                                    <th>Tên danh mục &nbsp;&nbsp;&nbsp;<a class="fa fa-sort"></a></th>
+                                    <th>Thứ tự &nbsp;&nbsp;&nbsp;<a class="fa fa-sort"></a></th>
+                                    <th>Hành động &nbsp;&nbsp;&nbsp;<a class="fa fa-sort"></a></th>
                                 </tr>
                             </thead>
-                            <tbody>
+
                             <tbody>
                                 <?php
                                 $items = 5;
@@ -59,90 +58,28 @@ include('include/footer.php');
                                 $query_sql = mysqli_query($con, $sql) or die(mysqli_error($con));
 
                                 while ($row = mysqli_fetch_array($query_sql)) {
-                                    // $query = "SELECT * FROM catelogy";
-                                    // $query_run = mysqli_query($con, $query);
-                                    // if (mysqli_num_rows($query_run) > 0) {
-                                    //     foreach ($query_run as $row) {
+
                                 ?>
                                     <tr>
-                                        <td><strong><?php echo $row['id']; ?></strong></td>
-                                        <td><strong><?php echo $row['name']; ?></strong></td>
-                                        <td><strong>
-                                                <?php if ($row['parent_id'] == 1) {
-                                                    echo "Thời trang";
-                                                } else {
-                                                    if ($row['parent_id'] == 2) {
-                                                        echo "Quần áo gia đình";
-                                                    } else {
-                                                        if ($row['parent_id'] == 3) {
-                                                            echo "Thời trang nữ";
-                                                        } else {
-                                                            if ($row['parent_id'] == 4) {
-                                                                echo "Thời trang nam";
-                                                            } else {
-                                                                if ($row['parent_id'] == 5) {
-                                                                    echo "Khuyến mại";
-                                                                } else {
-                                                                    if ($row['parent_id'] == 6) {
-                                                                        echo "Bán chạy";
-                                                                    } else {
-                                                                        if ($row['parent_id'] == 7) {
-                                                                            echo "Mới";
-                                                                        } else {
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                } ?>
-
-                                            </strong></td>
+                                        <td><strong><?php echo $row['id_catalog']; ?></strong></td>
+                                        <td><strong><?php echo $row['name_dm']; ?></strong></td>
                                         <td><strong><?php echo $row['sort_order']; ?></strong></td>
                                         <td class="list_td aligncenter">
-                                            <a href="editdm.php?catelogy_id= <?php echo $row['id']; ?>" title="Sửa" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
-                                            <button class=" btn btn-danger btn-sm delete_dm" title="Xóa" value="<?php echo $row['id']; ?>"> <i class="fa fa-times"></i> </button>
+                                            <a href="editdm.php?catelogy_id=<?php echo $row['id_catalog']; ?>" title="Sửa" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
+                                            <button class=" btn btn-danger btn-sm delete_dm" title="Xóa" value="<?php echo $row['id_catalog']; ?>"> <i class="fa fa-times"></i> </button>
                                         </td>
                                     </tr>
 
                                 <?php
 
                                 }
-                                // }
+
 
                                 ?>
-                                <tr>
-                                </tr>
                             </tbody>
 
                         </table>
                     </div>
-                    <nav aria-label="Page navigation" class="text-right">
-                        <ul class="pagination">
-                            <li><span aria-hidden="true"><a href="?page=<?= $page - 1; ?> " data-ci-pagination-page="2" rel="next" class="fa fa-backward"></a></span></li>
-                            <?php
-                            for ($i = 1; $i <= $pages; $i++) {
-                                if ($page == $i) {
-                            ?>
-                                    <li class="active"><a href="?page=<?= $i; ?>"><?php echo $i; ?></a></li>
-                                <?php
-                                } else {
-                                ?>
-                                    <li class=""><a href="?page=<?= $i; ?>"><?php echo $i; ?></a></li>
-                                <?php
-                                }
-                                ?>
-
-                            <?php
-                            }
-
-                            ?>
-
-                            <!-- <li><a href="#" data-ci-pagination-page="2">2</a></li>
-                                    <li><a href="#" data-ci-pagination-page="3">3</a></li> -->
-                            <li><span aria-hidden="true"><a href="?page=<?= $page + 1; ?> " data-ci-pagination-page="2" rel="next" class="fa fa-forward"></a></span></li>
-                        </ul>
-                    </nav>
                 </div>
             </div>
             <!-- Delete User -->
@@ -158,7 +95,7 @@ include('include/footer.php');
                                     <!-- <input type="" name="delete_id" class="deletedm_id"> -->
                                 </div>
                                 <div class="motal-footer">
-                                    <input type="hidden" name="deletedm_id" class="deletedm_id" value="<?= $row['id'] ?>">
+                                    <input type="hidden" name="deletedm_id" class="deletedm_id" value="<?= $row['id_catalog'] ?>">
                                     <button type="button" class="btn btn-primary" data-dismiss="modal">Không</button>
                                     <button type="submit" class="btn btn-primary" name='DeleteDMbtn'>Có</button>
                                 </div>
@@ -171,3 +108,21 @@ include('include/footer.php');
     </div>
     <!--/.row-->
 </div>
+<script>
+    $(document).ready(function() {
+        $(".deleteb").click(function(e) {
+            var users_id = $(this).val();
+            $(".deletebtn_id").val(users_id);
+            console.log(users_id);
+            $("#DeleteMota").modal("show");
+        });
+
+
+    });
+
+    $(document).ready(function() {
+        $('#myDataTable2').DataTable();
+    })
+</script>
+
+<?php include('include/footer.php'); ?>

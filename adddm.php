@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 include('include/header.php');
 include('include/footer.php');
 ?>
@@ -35,40 +36,9 @@ include('include/footer.php');
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">Mô tả</label>
-                            <div class="col-sm-5">
-                                <textarea class="form-control" rows="3" name="description"></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">Danh mục cha</label>
-                            <div class="col-sm-5">
-                                <select class="form-control" name="parent_id">
-                                    <option value="0">Menu gốc</option>
-                                    <option value="1">&nbsp;&nbsp;&nbsp;Thời trang</option>
-                                    <option value="2">&nbsp;&nbsp;&nbsp;Quần áo gia đình</option>
-                                    <option value="3">&nbsp;&nbsp;&nbsp;Thời trang nữ</option>
-                                    <option value="4">&nbsp;&nbsp;&nbsp;Thời trang nam</option>
-                                    <option value="5">Khuyến mại</option>
-                                    <option value="6">Bán chạy</option>
-                                    <option value="7">Mới</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label for="inputEmail3" class="col-sm-2 control-label">Thứ tự</label>
                             <div class="col-sm-5">
-                                <select class="form-control" name="sort_order">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                </select>
+                                <input type="text" name="sort_order" class="form-control" id="inputEmail3" placeholder="" value="">
                             </div>
                         </div>
                         <div class="form-group">
