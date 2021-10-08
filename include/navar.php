@@ -37,19 +37,34 @@
          </div>
      </form>
      <ul class="nav menu">
-
          <li class="active"><a href="dasborad.php"><svg class="glyph stroked home">
                      <use xlink:href="#stroked-home" />
                  </svg> Trang Chủ</a></li>
          <li><a href="ab.php"><svg class="glyph stroked calendar">
                      <use xlink:href="#stroked-calendar"></use>
                  </svg> Danh Mục</a></li>
-         <li><a href="product.php"><svg class="glyph stroked bag">
+         <li class="parent pull">
+             <a href="product.php">
+                 <span data-toggle="collapse" href="#sub-item-1"><svg class="glyph stroked bag">
+                         <use xlink:href="#stroked-bag"></use>
+                     </svg></span> Sản Phẩm
+             </a>
+             <ul class="children collapse in" id="sub-item-1">
+                 <li>
+                     <a class="" href="kdproduct.php">
+                         <svg class="glyph stroked checkmark ">
+                             <use xlink:href="#stroked-checkmark"></use>
+                         </svg> Kiểm Duyệt Sản Phẩm
+                     </a>
+                 </li>
+             </ul>
+         </li>
+         <!-- <li><a href="product.php"><svg class="glyph stroked bag">
                      <use xlink:href="#stroked-bag"></use>
                  </svg> Sản Phẩm</a></li>
          <li><a href="kdproduct.php"><svg class="glyph stroked bag">
                      <use xlink:href="#stroked-bag"></use>
-                 </svg> Kiểm Duyệt Sản Phẩm</a></li>
+                 </svg> Kiểm Duyệt Sản Phẩm</a></li> -->
          <li><a href="oder.php"><svg class="glyph stroked pencil">
                      <use xlink:href="#stroked-table"></use>
                  </svg> Đơn Đặt Hàng</a></li>

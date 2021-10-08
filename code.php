@@ -200,7 +200,7 @@ if (isset($_POST['addproduct'])) {
     $product_query = "INSERT INTO product (catalog_id,name,content,price,discount,image_link) VALUES ( '$catalog_id','$namesp','$content','$price','$discount','$filename')";
     $product_query_run = mysqli_query($con, $product_query);
     if($product_query_run){
-      move_uploaded_file($_FILES['image']['tmp_name'],'uploads/product/'.$filename);
+      move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/product/'.$filename);
       $_SESSION['status'] = "Thêm Mới Thành Công";
       $_SESSION['status_code'] = "success";
       header("Location: addproduct.php");
